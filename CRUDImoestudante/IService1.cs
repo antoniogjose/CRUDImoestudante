@@ -17,12 +17,12 @@ namespace CRUDImoestudante
         [OperationContract]
 
         [WebGet(UriTemplate = "/GetUsersData", ResponseFormat = WebMessageFormat.Json)]
-        List<user> GetUsersData();
+        List<UtilizadorRespostaPedido> GetUsersData();
 
         [OperationContract]
 
         [WebGet(UriTemplate = "/SearchUserId/{id}", ResponseFormat = WebMessageFormat.Json)]
-        user SearchUserId(string id);
+        UtilizadorRespostaPedido SearchUserId(string id);
 
         [OperationContract]
 
@@ -110,7 +110,7 @@ namespace CRUDImoestudante
         int idAlojamento;
         tipologia tipol;
         tipoAlojamento tipoAloj;
-        morada moradaAlojamento;
+        MoradaRespostaPedido moradaAlojamento;
         int avaliacao;
         IList<comodidade> comod;
 
@@ -136,7 +136,7 @@ namespace CRUDImoestudante
         }
 
         [DataMember]
-        public morada MoradaAlojamento
+        public MoradaRespostaPedido MoradaAlojamento
         {
             get { return moradaAlojamento; }
             set { moradaAlojamento = value; }
@@ -177,20 +177,118 @@ namespace CRUDImoestudante
 
     #region DATA UTILIZADOR
 
+
+
+    [DataContract]
+    public class MoradaRespostaPedido
+    {
+        int idMorada;
+        string rua;
+        int numero;
+        int andar;
+        string descAndar;
+        string pais;
+        string cidade;
+        int codPostal;
+
+        public int IdMorada
+        {
+            get { return idMorada; }
+            set { idMorada = value; }
+        }
+        public string Rua
+        {
+            get { return rua; }
+            set { rua = value; }
+        }
+
+        public string Cidade
+        {
+            get { return cidade; }
+            set { cidade = value; }
+        }
+
+        public int Numero
+        {
+            get { return numero; }
+            set { numero = value; }
+        }
+
+        public int Andar
+        {
+            get { return andar; }
+            set { andar = value; }
+        }
+
+        public string DescAndar
+        {
+            get { return descAndar; }
+            set { descAndar = value; }
+        }
+
+        public string Pais
+        {
+            get { return pais; }
+            set { pais = value; }
+        }
+
+        public int CodPostal
+        {
+            get { return codPostal; }
+            set { codPostal = value; }
+        }
+
+    }
+
+
+    [DataContract]
+    public class ContactoRespostaPedido
+    {
+        int idContacto;
+        int nivel;
+        string tipo;
+        string valor;
+
+        public int IdContacto
+        {
+            get { return idContacto; }
+            set { idContacto = value; }
+        }
+        public int Nivel
+        {
+            get { return nivel; }
+            set { nivel = value; }
+        }
+
+        public string Tipo
+        {
+            get { return tipo; }
+            set { tipo = value; }
+        }
+
+        public string Valor
+        {
+            get { return valor; }
+            set { valor = value; }
+        }
+
+    }
+
+
     [DataContract]
     public class UtilizadorRespostaPedido
     {
         int idUser;
         string nome;
         DateTime dataNascimento;
-        genero gen;
-        morada moradaUtilizador;
-        pai paisOrigem;
-        curso cursoUtilizador;
+        string gen;
+        MoradaRespostaPedido moradaUtilizador;
 
+        string paisOrigem;
+        string cursoUtilizador;
         string userName;
-        tipoUser tipoUtilizador;
-        string contacto;
+        string tipoUtilizador;
+        IList<ContactoRespostaPedido> contactos;
 
 
 
@@ -201,31 +299,31 @@ namespace CRUDImoestudante
         }
 
 
-        public tipoUser TipoUtilizador
+        public string TipoUtilizador
         {
             get { return tipoUtilizador; }
             set { tipoUtilizador = value; }
         }
 
-        public genero Gen
+        public string Gen
         {
             get { return gen; }
             set { gen = value; }
         }
 
-        public morada MoradaUtilizador
+        public MoradaRespostaPedido MoradaUtilizador
         {
             get { return moradaUtilizador; }
             set { moradaUtilizador = value; }
         }
 
-        public pai PaisOrigen
+        public string PaisOrigen
         {
             get { return paisOrigem; }
             set { paisOrigem = value; }
         }
 
-        public curso CursoUtilizador
+        public string CursoUtilizador
         {
             get { return cursoUtilizador; }
             set { cursoUtilizador = value; }
@@ -237,10 +335,10 @@ namespace CRUDImoestudante
             set { nome = value; }
         }
 
-        public string Contacto
+        public IList<contacto> Contactos
         {
-            get { return contacto; }
-            set { contacto = value; }
+            get { return contactos; }
+            set { contactos = value; }
         }
 
         public DateTime DataNascimento

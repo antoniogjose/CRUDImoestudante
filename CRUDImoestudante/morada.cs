@@ -27,6 +27,8 @@ namespace CRUDImoestudante
         public string rua { get; set; }
         public int codigoPostal { get; set; }
         public Nullable<int> numero { get; set; }
+        public Nullable<int> andar { get; set; }
+        public string descAndar { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<alojamento> alojamentoes { get; set; }

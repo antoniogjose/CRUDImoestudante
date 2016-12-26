@@ -29,7 +29,6 @@ namespace CRUDImoestudante
         public virtual DbSet<aluguer> aluguers { get; set; }
         public virtual DbSet<areaCurso> areaCursoes { get; set; }
         public virtual DbSet<comodidade> comodidades { get; set; }
-        public virtual DbSet<comudidadesAlojamento> comudidadesAlojamentoes { get; set; }
         public virtual DbSet<curso> cursoes { get; set; }
         public virtual DbSet<estado> estadoes { get; set; }
         public virtual DbSet<genero> generoes { get; set; }
@@ -40,5 +39,7 @@ namespace CRUDImoestudante
         public virtual DbSet<tipologia> tipologias { get; set; }
         public virtual DbSet<tipoUser> tipoUsers { get; set; }
         public virtual DbSet<user> users { get; set; }
+        public virtual DbSet<comodidadesAlojamento> comodidadesAlojamentoes { get; set; }
+        public virtual DbSet<contacto> contactoes { get; set; }
     }
 }

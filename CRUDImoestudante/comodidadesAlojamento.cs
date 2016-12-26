@@ -12,7 +12,7 @@ namespace CRUDImoestudante
     using System;
     using System.Collections.Generic;
     
-    public partial class comudidadesAlojamento
+    public partial class comodidadesAlojamento
     {
         public int idComodidade { get; set; }
         public int idAlojamento { get; set; }

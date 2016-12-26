@@ -153,7 +153,10 @@
     <Compile Include="comodidade.cs">
       <DependentUpon>ModelImoestudante.tt</DependentUpon>
     </Compile>
-    <Compile Include="comudidadesAlojamento.cs">
+    <Compile Include="comodidadesAlojamento.cs">
+      <DependentUpon>ModelImoestudante.tt</DependentUpon>
+    </Compile>
+    <Compile Include="contacto.cs">
       <DependentUpon>ModelImoestudante.tt</DependentUpon>
     </Compile>
     <Compile Include="curso.cs">

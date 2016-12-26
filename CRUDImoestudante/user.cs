@@ -20,6 +20,7 @@ namespace CRUDImoestudante
             this.aluguers = new HashSet<aluguer>();
             this.aluguers1 = new HashSet<aluguer>();
             this.aluguers2 = new HashSet<aluguer>();
+            this.contactoes = new HashSet<contacto>();
         }
     
         public int idUser { get; set; }
@@ -44,5 +45,7 @@ namespace CRUDImoestudante
         public virtual curso curso { get; set; }
         public virtual genero genero { get; set; }
         public virtual pai pai { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<contacto> contactoes { get; set; }
     }
 }

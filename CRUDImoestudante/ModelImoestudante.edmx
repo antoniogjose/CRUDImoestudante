@@ -45,12 +45,22 @@
           <Property Name="idComodidade" Type="int" Nullable="false" />
           <Property Name="nomeComodidade" Type="nchar" MaxLength="30" Nullable="false" />
         </EntityType>
-        <EntityType Name="comudidadesAlojamento">
+        <EntityType Name="comodidadesAlojamento">
           <Key>
             <PropertyRef Name="idComodidade" />
           </Key>
           <Property Name="idComodidade" Type="int" Nullable="false" />
           <Property Name="idAlojamento" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="contacto">
+          <Key>
+            <PropertyRef Name="idContacto" />
+          </Key>
+          <Property Name="idContacto" Type="int" Nullable="false" />
+          <Property Name="idUser" Type="int" Nullable="false" />
+          <Property Name="nivel" Type="int" Nullable="false" />
+          <Property Name="tipo" Type="nchar" MaxLength="20" Nullable="false" />
+          <Property Name="valor" Type="nchar" MaxLength="20" Nullable="false" />
         </EntityType>
         <EntityType Name="curso">
           <Key>
@@ -93,6 +103,8 @@
           <Property Name="rua" Type="nchar" MaxLength="100" Nullable="false" />
           <Property Name="codigoPostal" Type="int" Nullable="false" />
           <Property Name="numero" Type="int" />
+          <Property Name="andar" Type="int" />
+          <Property Name="descAndar" Type="nchar" MaxLength="10" />
         </EntityType>
         <EntityType Name="pais">
           <Key>
@@ -133,7 +145,6 @@
           <Property Name="idPais" Type="int" Nullable="false" />
           <Property Name="idCurso" Type="int" Nullable="false" />
           <Property Name="nome" Type="nchar" MaxLength="100" Nullable="false" />
-          <Property Name="contato" Type="nchar" MaxLength="50" Nullable="false" />
           <Property Name="dataNascimento" Type="date" />
           <Property Name="login" Type="nchar" MaxLength="20" Nullable="false" />
           <Property Name="password" Type="nchar" MaxLength="20" Nullable="false" />
@@ -148,6 +159,18 @@
             </Principal>
             <Dependent Role="aluguer">
               <PropertyRef Name="idUserSenhorio" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_contacto_user">
+          <End Role="user" Type="Self.user" Multiplicity="1" />
+          <End Role="contacto" Type="Self.contacto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="user">
+              <PropertyRef Name="idUser" />
+            </Principal>
+            <Dependent Role="contacto">
+              <PropertyRef Name="idUser" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -324,7 +347,8 @@
           <EntitySet Name="aluguer" EntityType="Self.aluguer" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="areaCurso" EntityType="Self.areaCurso" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="comodidade" EntityType="Self.comodidade" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="comudidadesAlojamento" EntityType="Self.comudidadesAlojamento" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="comodidadesAlojamento" EntityType="Self.comodidadesAlojamento" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="contacto" EntityType="Self.contacto" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="curso" EntityType="Self.curso" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="estado" EntityType="Self.estado" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="genero" EntityType="Self.genero" Schema="dbo" store:Type="Tables" />
@@ -338,6 +362,10 @@
           <AssociationSet Name="FK_aidUsersenhorio" Association="Self.FK_aidUsersenhorio">
             <End Role="user" EntitySet="user" />
             <End Role="aluguer" EntitySet="aluguer" />
+          </AssociationSet>
+          <AssociationSet Name="FK_contacto_user" Association="Self.FK_contacto_user">
+            <End Role="user" EntitySet="user" />
+            <End Role="contacto" EntitySet="contacto" />
           </AssociationSet>
           <AssociationSet Name="FK_idAlojamento" Association="Self.FK_idAlojamento">
             <End Role="alojamento" EntitySet="alojamento" />
@@ -450,13 +478,6 @@
           <Property Name="idComodidade" Type="Int32" Nullable="false" />
           <Property Name="nomeComodidade" Type="String" MaxLength="30" FixedLength="true" Unicode="true" Nullable="false" />
         </EntityType>
-        <EntityType Name="comudidadesAlojamento">
-          <Key>
-            <PropertyRef Name="idComodidade" />
-          </Key>
-          <Property Name="idComodidade" Type="Int32" Nullable="false" />
-          <Property Name="idAlojamento" Type="Int32" Nullable="false" />
-        </EntityType>
         <EntityType Name="curso">
           <Key>
             <PropertyRef Name="idCurso" />
@@ -508,6 +529,8 @@
           <NavigationProperty Name="alojamentoes" Relationship="Self.FK_idMorada" FromRole="morada" ToRole="alojamento" />
           <NavigationProperty Name="instituicaoEnsinoes" Relationship="Self.FK_idMordaInst" FromRole="morada" ToRole="instituicaoEnsino" />
           <NavigationProperty Name="pai" Relationship="Self.FK_idPais" FromRole="morada" ToRole="pais" />
+          <Property Name="andar" Type="Int32" />
+          <Property Name="descAndar" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
         </EntityType>
         <EntityType Name="pai">
           <Key>
@@ -563,6 +586,7 @@
           <NavigationProperty Name="genero" Relationship="Self.FK_idGenero" FromRole="user" ToRole="genero" />
           <NavigationProperty Name="pai" Relationship="Self.FK_PaisUser" FromRole="user" ToRole="pais" />
           <Property Name="apiKey" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
+          <NavigationProperty Name="contactoes" Relationship="ImoEstudanteModel.FK_contacto_user" FromRole="user" ToRole="contacto" />
         </EntityType>
         <Association Name="FK_idAlojamento">
           <End Role="alojamento" Type="Self.alojamento" Multiplicity="1" />
@@ -749,7 +773,6 @@
           <EntitySet Name="aluguers" EntityType="Self.aluguer" />
           <EntitySet Name="areaCursoes" EntityType="Self.areaCurso" />
           <EntitySet Name="comodidades" EntityType="Self.comodidade" />
-          <EntitySet Name="comudidadesAlojamentoes" EntityType="Self.comudidadesAlojamento" />
           <EntitySet Name="cursoes" EntityType="Self.curso" />
           <EntitySet Name="estadoes" EntityType="Self.estado" />
           <EntitySet Name="generoes" EntityType="Self.genero" />
@@ -820,7 +843,43 @@
             <End Role="pais" EntitySet="pais" />
             <End Role="user" EntitySet="users" />
           </AssociationSet>
+          <EntitySet Name="comodidadesAlojamentoes" EntityType="ImoEstudanteModel.comodidadesAlojamento" />
+          <EntitySet Name="contactoes" EntityType="ImoEstudanteModel.contacto" />
+          <AssociationSet Name="FK_contacto_user" Association="ImoEstudanteModel.FK_contacto_user">
+            <End Role="user" EntitySet="users" />
+            <End Role="contacto" EntitySet="contactoes" />
+          </AssociationSet>
         </EntityContainer>
+        <EntityType Name="comodidadesAlojamento">
+          <Key>
+            <PropertyRef Name="idComodidade" />
+          </Key>
+          <Property Name="idComodidade" Type="Int32" Nullable="false" />
+          <Property Name="idAlojamento" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="contacto">
+          <Key>
+            <PropertyRef Name="idContacto" />
+          </Key>
+          <Property Name="idContacto" Type="Int32" Nullable="false" />
+          <Property Name="idUser" Type="Int32" Nullable="false" />
+          <Property Name="nivel" Type="Int32" Nullable="false" />
+          <Property Name="tipo" Type="String" Nullable="false" MaxLength="20" FixedLength="true" Unicode="true" />
+          <Property Name="valor" Type="String" Nullable="false" MaxLength="20" FixedLength="true" Unicode="true" />
+          <NavigationProperty Name="user" Relationship="ImoEstudanteModel.FK_contacto_user" FromRole="contacto" ToRole="user" />
+        </EntityType>
+        <Association Name="FK_contacto_user">
+          <End Type="ImoEstudanteModel.user" Role="user" Multiplicity="1" />
+          <End Type="ImoEstudanteModel.contacto" Role="contacto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="user">
+              <PropertyRef Name="idUser" />
+            </Principal>
+            <Dependent Role="contacto">
+              <PropertyRef Name="idUser" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -871,14 +930,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="comudidadesAlojamentoes">
-            <EntityTypeMapping TypeName="ImoEstudanteModel.comudidadesAlojamento">
-              <MappingFragment StoreEntitySet="comudidadesAlojamento">
-                <ScalarProperty Name="idComodidade" ColumnName="idComodidade" />
-                <ScalarProperty Name="idAlojamento" ColumnName="idAlojamento" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="cursoes">
             <EntityTypeMapping TypeName="ImoEstudanteModel.curso">
               <MappingFragment StoreEntitySet="curso">
@@ -917,6 +968,8 @@
           <EntitySetMapping Name="moradas">
             <EntityTypeMapping TypeName="ImoEstudanteModel.morada">
               <MappingFragment StoreEntitySet="morada">
+                <ScalarProperty Name="descAndar" ColumnName="descAndar" />
+                <ScalarProperty Name="andar" ColumnName="andar" />
                 <ScalarProperty Name="idMorada" ColumnName="idMorada" />
                 <ScalarProperty Name="idPais" ColumnName="idPais" />
                 <ScalarProperty Name="cidade" ColumnName="cidade" />
@@ -969,10 +1022,28 @@
                 <ScalarProperty Name="idPais" ColumnName="idPais" />
                 <ScalarProperty Name="idCurso" ColumnName="idCurso" />
                 <ScalarProperty Name="nome" ColumnName="nome" />
-                <ScalarProperty Name="contato" ColumnName="contato" />
                 <ScalarProperty Name="dataNascimento" ColumnName="dataNascimento" />
                 <ScalarProperty Name="login" ColumnName="login" />
                 <ScalarProperty Name="password" ColumnName="password" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="comodidadesAlojamentoes">
+            <EntityTypeMapping TypeName="ImoEstudanteModel.comodidadesAlojamento">
+              <MappingFragment StoreEntitySet="comodidadesAlojamento">
+                <ScalarProperty Name="idAlojamento" ColumnName="idAlojamento" />
+                <ScalarProperty Name="idComodidade" ColumnName="idComodidade" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="contactoes">
+            <EntityTypeMapping TypeName="ImoEstudanteModel.contacto">
+              <MappingFragment StoreEntitySet="contacto">
+                <ScalarProperty Name="valor" ColumnName="valor" />
+                <ScalarProperty Name="tipo" ColumnName="tipo" />
+                <ScalarProperty Name="nivel" ColumnName="nivel" />
+                <ScalarProperty Name="idUser" ColumnName="idUser" />
+                <ScalarProperty Name="idContacto" ColumnName="idContacto" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

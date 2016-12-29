@@ -29,7 +29,7 @@ namespace CRUDImoestudante
 
         [OperationContract]
         [WebInvoke(Method = "POST", ResponseFormat = WebMessageFormat.Json, RequestFormat = WebMessageFormat.Json, UriTemplate = "/UpDatePais")]
-        bool UpDatePais(List<PaisRespostaPedido> paizes);
+        bool UpDatePais(PaisRespostaPedido[] paizes);
 
         [OperationContract]
         [WebInvoke(Method = "GET", ResponseFormat = WebMessageFormat.Json, UriTemplate = "/GetUserType")]

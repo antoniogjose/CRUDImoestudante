@@ -111,7 +111,7 @@
             <PropertyRef Name="idPais" />
           </Key>
           <Property Name="idPais" Type="int" Nullable="false" />
-          <Property Name="nomePais" Type="nchar" MaxLength="20" Nullable="false" />
+          <Property Name="nomePais" Type="nchar" MaxLength="50" Nullable="false" />
           <Property Name="code" Type="nchar" MaxLength="10" Nullable="false" />
         </EntityType>
         <EntityType Name="tipoAlojamento">
@@ -538,7 +538,7 @@
             <PropertyRef Name="idPais" />
           </Key>
           <Property Name="idPais" Type="Int32" Nullable="false" />
-          <Property Name="nomePais" Type="String" MaxLength="20" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="nomePais" Type="String" MaxLength="50" FixedLength="true" Unicode="true" Nullable="false" />
           <NavigationProperty Name="moradas" Relationship="Self.FK_idPais" FromRole="pais" ToRole="morada" />
           <NavigationProperty Name="users" Relationship="Self.FK_PaisUser" FromRole="pais" ToRole="user" />
           <Property Name="code" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />

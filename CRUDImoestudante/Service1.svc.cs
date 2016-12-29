@@ -176,26 +176,31 @@ namespace CRUDImoestudante
 
 
         [WebInvoke(Method = "POST", ResponseFormat = WebMessageFormat.Json, RequestFormat = WebMessageFormat.Json, UriTemplate = "/UpDatePais")]
-        public bool UpDatePais(List<PaisRespostaPedido> paizes)
+        public bool UpDatePais(PaisRespostaPedido[] paizes) 
         {
             using (ImoEstudanteEntities db = new ImoEstudanteEntities())
             {
                 try
                 {
-                    foreach (PaisRespostaPedido pais in paizes)
-                    {
+                   
+                 foreach (PaisRespostaPedido pais in paizes)
+                 {
+                        List<pai> p = db.pais.ToList();
+                        int i = p.Count;
                         pai dBpais = new pai();
+                        dBpais.idPais = i ++;
                         dBpais.nomePais = pais.Name;
                         dBpais.code = pais.Code;
 
                         db.pais.Add(dBpais);
                         db.SaveChanges();
-                    }
+                       
+                  }
                     return true;
                 }
                 catch
                 {
-                    return false;
+                    throw;
                 }
             }
         }

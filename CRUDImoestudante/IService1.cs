@@ -15,88 +15,145 @@ namespace CRUDImoestudante
         #region UTILIZADOR
 
         [OperationContract]
-
-        [WebGet(UriTemplate = "/GetUsersData", ResponseFormat = WebMessageFormat.Json)]
+        [WebInvoke(Method = "GET", ResponseFormat = WebMessageFormat.Json, UriTemplate = "/GetUsersData")]
         List<UtilizadorRespostaPedido> GetUsersData();
 
         [OperationContract]
-
-        [WebGet(UriTemplate = "/SearchUserId/{id}", ResponseFormat = WebMessageFormat.Json)]
+        [WebInvoke(Method = "GET", ResponseFormat = WebMessageFormat.Json, UriTemplate = "/SearchUserId/{id}")]
         UtilizadorRespostaPedido SearchUserId(string id);
 
         [OperationContract]
-
-        [WebGet(UriTemplate = "/SearchUser", ResponseFormat = WebMessageFormat.Json, RequestFormat = WebMessageFormat.Json)]
-        bool SearchUser(user utilizador);
+        [WebInvoke(Method = "POST", ResponseFormat = WebMessageFormat.Json, RequestFormat = WebMessageFormat.Json, UriTemplate = "/AddUser")]
+        bool AddUser(UtilizadorRespostaPedido utilizador);
 
 
         [OperationContract]
+        [WebInvoke(Method = "POST", ResponseFormat = WebMessageFormat.Json, RequestFormat = WebMessageFormat.Json, UriTemplate = "/UpDatePais")]
+        bool UpDatePais(List<PaisRespostaPedido> paizes);
 
-        [WebGet(UriTemplate = "/AddUser", ResponseFormat = WebMessageFormat.Json, RequestFormat = WebMessageFormat.Json)]
-        bool AddUser(user utilizador);
+        [OperationContract]
+        [WebInvoke(Method = "GET", ResponseFormat = WebMessageFormat.Json, UriTemplate = "/GetUserType")]
+        List<TipoUserRespostaPedido> GetUserType();
 
+        /** [OperationContract]
+
+         [WebGet(UriTemplate = "/SearchUser", ResponseFormat = WebMessageFormat.Json, RequestFormat = WebMessageFormat.Json)]
+         bool SearchUser(user utilizador);**/
+
+        /**
+                [OperationContract]
+
+                [WebGet(UriTemplate = "/AddUser", ResponseFormat = WebMessageFormat.Json, RequestFormat = WebMessageFormat.Json)]
+                bool AddUser(user utilizador);
+
+                #endregion  end
+
+                #region CONTRACTO
+
+                [OperationContract]
+                [WebGet(UriTemplate = "/GetContractData", ResponseFormat = WebMessageFormat.Json)]
+                List<aluguer> GetContractData();
+
+                [OperationContract]
+                [WebGet(UriTemplate = "/SearchContract", ResponseFormat = WebMessageFormat.Json, RequestFormat = WebMessageFormat.Json)]
+                List<aluguer> SearchContract(aluguer aluguerData);
+
+                [OperationContract]
+                [WebGet(UriTemplate = "/SearchContractId/{id}", ResponseFormat = WebMessageFormat.Json, RequestFormat = WebMessageFormat.Json)]
+                List<aluguer> SearchContractId(string id);
+
+                [OperationContract]
+                [WebGet(UriTemplate = "/Addcontract", ResponseFormat = WebMessageFormat.Json, RequestFormat = WebMessageFormat.Json)]
+                List<aluguer> Addcontract(aluguer aluguerData);
+
+                #endregion  end
+
+                #region HABITACAO
+
+                [OperationContract]
+                [WebGet(UriTemplate = "/GetHouseData", ResponseFormat = WebMessageFormat.Json)]
+                List<alojamento> GetHouseData();
+
+                [OperationContract]
+                [WebGet(UriTemplate = "/SearchHouse", ResponseFormat = WebMessageFormat.Json, RequestFormat = WebMessageFormat.Json)]
+                List<alojamento> SearchHouse(alojamento aluguerData);
+
+                [OperationContract]
+                [WebGet(UriTemplate = "/SearchHouseId/{id}", ResponseFormat = WebMessageFormat.Json, RequestFormat = WebMessageFormat.Json)]
+                List<alojamento> SearchHouseId(string id);
+
+                [OperationContract]
+                [WebGet(UriTemplate = "/AddHouse", ResponseFormat = WebMessageFormat.Json, RequestFormat = WebMessageFormat.Json)]
+                List<aluguer> AddHouse(aluguer aluguerData);
+
+                #endregion  end
+
+                #region COMODIDADES
+
+                [OperationContract]
+                [WebGet(UriTemplate = "/GetComodData", ResponseFormat = WebMessageFormat.Json)]
+                List<comodidade> GetComodData();
+
+                [OperationContract]
+                [WebGet(UriTemplate = "/GetComodDataAlojID/{id}", ResponseFormat = WebMessageFormat.Json)]
+                List<comodidade> GetComodDataAlojID(string id);
+
+                [OperationContract]
+                [WebGet(UriTemplate = "/RemoveComod", ResponseFormat = WebMessageFormat.Json, RequestFormat = WebMessageFormat.Json)]
+                bool RemoveComod(comodidade alojamentoData);
+
+                [OperationContract]
+                [WebGet(UriTemplate = "/AddComod", ResponseFormat = WebMessageFormat.Json, RequestFormat = WebMessageFormat.Json)]
+                bool AddComod(comodidade aluguerData);
+            **/
         #endregion  end
 
-        #region CONTRACTO
 
-        [OperationContract]
-        [WebGet(UriTemplate = "/GetContractData", ResponseFormat = WebMessageFormat.Json)]
-        List<aluguer> GetContractData();
+    }
 
-        [OperationContract]
-        [WebGet(UriTemplate = "/SearchContract", ResponseFormat = WebMessageFormat.Json, RequestFormat = WebMessageFormat.Json)]
-        List<aluguer> SearchContract(aluguer aluguerData);
 
-        [OperationContract]
-        [WebGet(UriTemplate = "/SearchContractId/{id}", ResponseFormat = WebMessageFormat.Json, RequestFormat = WebMessageFormat.Json)]
-        List<aluguer> SearchContractId(string id);
+    [DataContract]
+    public class PaisRespostaPedido
+    {
+        string name;
+        string code;
 
-        [OperationContract]
-        [WebGet(UriTemplate = "/Addcontract", ResponseFormat = WebMessageFormat.Json, RequestFormat = WebMessageFormat.Json)]
-        List<aluguer> Addcontract(aluguer aluguerData);
+        [DataMember]
+        public string Name
+        {
+            get { return name; }
+            set { name = value; }
+        }
 
-        #endregion  end
+        [DataMember]
+        public string Code
+        {
+            get { return code; }
+            set { code = value; }
+        }
 
-        #region HABITACAO
+    }
 
-        [OperationContract]
-        [WebGet(UriTemplate = "/GetHouseData", ResponseFormat = WebMessageFormat.Json)]
-        List<alojamento> GetHouseData();
 
-        [OperationContract]
-        [WebGet(UriTemplate = "/SearchHouse", ResponseFormat = WebMessageFormat.Json, RequestFormat = WebMessageFormat.Json)]
-        List<alojamento> SearchHouse(alojamento aluguerData);
+    [DataContract]
+    public class TipoUserRespostaPedido
+    {
+        int id;
+        string tipo;
 
-        [OperationContract]
-        [WebGet(UriTemplate = "/SearchHouseId/{id}", ResponseFormat = WebMessageFormat.Json, RequestFormat = WebMessageFormat.Json)]
-        List<alojamento> SearchHouseId(string id);
+        [DataMember]
+        public int Id
+        {
+            get { return id; }
+            set { id = value; }
+        }
 
-        [OperationContract]
-        [WebGet(UriTemplate = "/AddHouse", ResponseFormat = WebMessageFormat.Json, RequestFormat = WebMessageFormat.Json)]
-        List<aluguer> AddHouse(aluguer aluguerData);
-
-        #endregion  end
-
-        #region COMODIDADES
-
-        [OperationContract]
-        [WebGet(UriTemplate = "/GetComodData", ResponseFormat = WebMessageFormat.Json)]
-        List<comodidade> GetComodData();
-
-        [OperationContract]
-        [WebGet(UriTemplate = "/GetComodDataAlojID/{id}", ResponseFormat = WebMessageFormat.Json)]
-        List<comodidade> GetComodDataAlojID(string id);
-
-        [OperationContract]
-        [WebGet(UriTemplate = "/RemoveComod", ResponseFormat = WebMessageFormat.Json, RequestFormat = WebMessageFormat.Json)]
-        bool RemoveComod(comodidade alojamentoData);
-
-        [OperationContract]
-        [WebGet(UriTemplate = "/AddComod", ResponseFormat = WebMessageFormat.Json, RequestFormat = WebMessageFormat.Json)]
-        bool AddComod(comodidade aluguerData);
-
-        #endregion  end
-
+        [DataMember]
+        public string Tipo
+        {
+            get { return tipo; }
+            set { tipo = value; }
+        }
 
     }
 
@@ -104,15 +161,82 @@ namespace CRUDImoestudante
     #region DATA ALOJAMENTO
 
     [DataContract]
+    public class tipologiaRespostaPedido
+    {
+        int idTipologia;
+        string descTipologia;
+
+        [DataMember]
+        public int IdTipologia
+        {
+            get { return idTipologia; }
+            set { idTipologia = value; }
+        }
+
+        [DataMember]
+        public string DescTipologia
+        {
+            get { return descTipologia; }
+            set { descTipologia = value; }
+        }
+
+    }
+
+
+    [DataContract]
+    public class tipoAlojamentoRespostaPedido
+    {
+        int idTipoAlojamento;
+        string descTipoAlojamento;
+
+        [DataMember]
+        public int IdTipoAlojamento
+        {
+            get { return idTipoAlojamento; }
+            set { idTipoAlojamento = value; }
+        }
+
+        [DataMember]
+        public string DescTipoAlojamento
+        {
+            get { return descTipoAlojamento; }
+            set { descTipoAlojamento = value; }
+        }
+
+    }
+
+    [DataContract]
+    public class comodidadeRespostaPedido
+    {
+        int idComodidade;
+        string descComodidade;
+
+        [DataMember]
+        public int IdComodidade
+        {
+            get { return idComodidade; }
+            set { idComodidade = value; }
+        }
+
+        [DataMember]
+        public string DescComodidade
+        {
+            get { return descComodidade; }
+            set { descComodidade = value; }
+        }
+
+    }
+
+    [DataContract]
     public class AlojamentoRespostaPedido
     {
 
         int idAlojamento;
-        tipologia tipol;
-        tipoAlojamento tipoAloj;
+        tipologiaRespostaPedido tipol;
+        tipoAlojamentoRespostaPedido tipoAloj;
         MoradaRespostaPedido moradaAlojamento;
         int avaliacao;
-        IList<comodidade> comod;
+        IList<comodidadeRespostaPedido> comod;
 
         [DataMember]
         public int IdAlojamento
@@ -122,14 +246,14 @@ namespace CRUDImoestudante
         }
 
         [DataMember]
-        public tipologia Tipol
+        public tipologiaRespostaPedido Tipol
         {
             get { return tipol; }
             set { tipol = value; }
         }
 
         [DataMember]
-        public tipoAlojamento TipoAloj
+        public tipoAlojamentoRespostaPedido TipoAloj
         {
             get { return tipoAloj; }
             set { tipoAloj = value; }
@@ -150,7 +274,7 @@ namespace CRUDImoestudante
         }
 
         [DataMember]
-        public IList<comodidade> comodidades
+        public IList<comodidadeRespostaPedido> comodidades
         {
             get { return comod; }
             set { comod = value; }
@@ -177,8 +301,6 @@ namespace CRUDImoestudante
 
     #region DATA UTILIZADOR
 
-
-
     [DataContract]
     public class MoradaRespostaPedido
     {
@@ -191,47 +313,56 @@ namespace CRUDImoestudante
         string cidade;
         int codPostal;
 
+        [DataMember]
         public int IdMorada
         {
             get { return idMorada; }
             set { idMorada = value; }
         }
+
+        [DataMember]
         public string Rua
         {
             get { return rua; }
             set { rua = value; }
         }
 
+        [DataMember]
         public string Cidade
         {
             get { return cidade; }
             set { cidade = value; }
         }
 
+        [DataMember]
         public int Numero
         {
             get { return numero; }
             set { numero = value; }
         }
 
+        [DataMember]
         public int Andar
         {
             get { return andar; }
             set { andar = value; }
         }
 
+        [DataMember]
         public string DescAndar
         {
             get { return descAndar; }
             set { descAndar = value; }
         }
 
+        [DataMember]
         public string Pais
         {
             get { return pais; }
             set { pais = value; }
         }
 
+        [DataMember]
         public int CodPostal
         {
             get { return codPostal; }
@@ -249,23 +380,28 @@ namespace CRUDImoestudante
         string tipo;
         string valor;
 
+        [DataMember]
         public int IdContacto
         {
             get { return idContacto; }
             set { idContacto = value; }
         }
+
+        [DataMember]
         public int Nivel
         {
             get { return nivel; }
             set { nivel = value; }
         }
 
+        [DataMember]
         public string Tipo
         {
             get { return tipo; }
             set { tipo = value; }
         }
 
+        [DataMember]
         public string Valor
         {
             get { return valor; }
@@ -291,62 +427,70 @@ namespace CRUDImoestudante
         IList<ContactoRespostaPedido> contactos;
 
 
-
+        [DataMember]
         public int IdUser
         {
             get { return idUser; }
             set { idUser = value; }
         }
 
-
+        [DataMember]
         public string TipoUtilizador
         {
             get { return tipoUtilizador; }
             set { tipoUtilizador = value; }
         }
 
+        [DataMember]
         public string Gen
         {
             get { return gen; }
             set { gen = value; }
         }
 
+        [DataMember]
         public MoradaRespostaPedido MoradaUtilizador
         {
             get { return moradaUtilizador; }
             set { moradaUtilizador = value; }
         }
 
+        [DataMember]
         public string PaisOrigen
         {
             get { return paisOrigem; }
             set { paisOrigem = value; }
         }
 
+        [DataMember]
         public string CursoUtilizador
         {
             get { return cursoUtilizador; }
             set { cursoUtilizador = value; }
         }
 
+        [DataMember]
         public string Nome
         {
             get { return nome; }
             set { nome = value; }
         }
 
-        public IList<contacto> Contactos
+        [DataMember]
+        public IList<ContactoRespostaPedido> Contactos
         {
             get { return contactos; }
             set { contactos = value; }
         }
 
+        [DataMember]
         public DateTime DataNascimento
         {
             get { return dataNascimento; }
             set { dataNascimento = value; }
         }
 
+        [DataMember]
         public string UserName
         {
             get { return userName; }

@@ -112,6 +112,7 @@
           </Key>
           <Property Name="idPais" Type="int" Nullable="false" />
           <Property Name="nomePais" Type="nchar" MaxLength="20" Nullable="false" />
+          <Property Name="code" Type="nchar" MaxLength="10" Nullable="false" />
         </EntityType>
         <EntityType Name="tipoAlojamento">
           <Key>
@@ -540,6 +541,7 @@
           <Property Name="nomePais" Type="String" MaxLength="20" FixedLength="true" Unicode="true" Nullable="false" />
           <NavigationProperty Name="moradas" Relationship="Self.FK_idPais" FromRole="pais" ToRole="morada" />
           <NavigationProperty Name="users" Relationship="Self.FK_PaisUser" FromRole="pais" ToRole="user" />
+          <Property Name="code" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
         </EntityType>
         <EntityType Name="tipoAlojamento">
           <Key>
@@ -575,7 +577,6 @@
           <Property Name="idPais" Type="Int32" Nullable="false" />
           <Property Name="idCurso" Type="Int32" Nullable="false" />
           <Property Name="nome" Type="String" MaxLength="100" FixedLength="true" Unicode="true" Nullable="false" />
-          <Property Name="contato" Type="String" MaxLength="50" FixedLength="true" Unicode="true" Nullable="false" />
           <Property Name="dataNascimento" Type="DateTime" Precision="0" />
           <Property Name="login" Type="String" MaxLength="20" FixedLength="true" Unicode="true" Nullable="false" />
           <Property Name="password" Type="String" MaxLength="20" FixedLength="true" Unicode="true" Nullable="false" />
@@ -982,6 +983,7 @@
           <EntitySetMapping Name="pais">
             <EntityTypeMapping TypeName="ImoEstudanteModel.pai">
               <MappingFragment StoreEntitySet="pais">
+                <ScalarProperty Name="code" ColumnName="code" />
                 <ScalarProperty Name="idPais" ColumnName="idPais" />
                 <ScalarProperty Name="nomePais" ColumnName="nomePais" />
               </MappingFragment>

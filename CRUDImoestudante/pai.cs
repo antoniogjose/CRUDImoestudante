@@ -23,6 +23,7 @@ namespace CRUDImoestudante
     
         public int idPais { get; set; }
         public string nomePais { get; set; }
+        public string code { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<morada> moradas { get; set; }

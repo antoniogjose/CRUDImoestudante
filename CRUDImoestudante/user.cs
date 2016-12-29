@@ -30,7 +30,6 @@ namespace CRUDImoestudante
         public int idPais { get; set; }
         public int idCurso { get; set; }
         public string nome { get; set; }
-        public string contato { get; set; }
         public Nullable<System.DateTime> dataNascimento { get; set; }
         public string login { get; set; }
         public string password { get; set; }

@@ -7,14 +7,14 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace CRUDImoestudante
+namespace CRUDImoestudante.App_Db_Model
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class comodidade
+    public partial class comodidadesAlojamento
     {
         public int idComodidade { get; set; }
-        public string nomeComodidade { get; set; }
+        public int idAlojamento { get; set; }
     }
 }

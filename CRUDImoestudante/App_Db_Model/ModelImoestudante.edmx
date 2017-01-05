@@ -43,7 +43,7 @@
             <PropertyRef Name="idComodidade" />
           </Key>
           <Property Name="idComodidade" Type="int" Nullable="false" />
-          <Property Name="nomeComodidade" Type="nchar" MaxLength="30" Nullable="false" />
+          <Property Name="nomeComodidade" Type="nchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <EntityType Name="comodidadesAlojamento">
           <Key>
@@ -477,7 +477,7 @@
             <PropertyRef Name="idComodidade" />
           </Key>
           <Property Name="idComodidade" Type="Int32" Nullable="false" />
-          <Property Name="nomeComodidade" Type="String" MaxLength="30" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="nomeComodidade" Type="String" MaxLength="50" FixedLength="true" Unicode="true" Nullable="false" />
         </EntityType>
         <EntityType Name="curso">
           <Key>

@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace CRUDImoestudante
+namespace CRUDImoestudante.App_Db_Model
 {
     using System;
     using System.Data.Entity;

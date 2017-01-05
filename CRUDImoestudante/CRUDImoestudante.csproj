@@ -127,103 +127,104 @@
     <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="ModelImoestudante.Context.tt">
+    <Content Include="App_Db_Model\ModelImoestudante.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>ModelImoestudante.edmx</DependentUpon>
       <LastGenOutput>ModelImoestudante.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="ModelImoestudante.tt">
+    <Content Include="App_Db_Model\ModelImoestudante.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>ModelImoestudante.edmx</DependentUpon>
       <LastGenOutput>ModelImoestudante.cs</LastGenOutput>
     </Content>
     <Content Include="Service1.svc" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="alojamento.cs">
+    <Compile Include="App_Db_Model\alojamento.cs">
       <DependentUpon>ModelImoestudante.tt</DependentUpon>
     </Compile>
-    <Compile Include="aluguer.cs">
+    <Compile Include="App_Db_Model\aluguer.cs">
       <DependentUpon>ModelImoestudante.tt</DependentUpon>
     </Compile>
-    <Compile Include="areaCurso.cs">
+    <Compile Include="App_Db_Model\areaCurso.cs">
       <DependentUpon>ModelImoestudante.tt</DependentUpon>
     </Compile>
-    <Compile Include="comodidade.cs">
+    <Compile Include="App_Db_Model\comodidade.cs">
       <DependentUpon>ModelImoestudante.tt</DependentUpon>
     </Compile>
-    <Compile Include="comodidadesAlojamento.cs">
+    <Compile Include="App_Db_Model\comodidadesAlojamento.cs">
       <DependentUpon>ModelImoestudante.tt</DependentUpon>
     </Compile>
-    <Compile Include="contacto.cs">
+    <Compile Include="App_Db_Model\contacto.cs">
       <DependentUpon>ModelImoestudante.tt</DependentUpon>
     </Compile>
-    <Compile Include="curso.cs">
+    <Compile Include="App_Db_Model\curso.cs">
       <DependentUpon>ModelImoestudante.tt</DependentUpon>
     </Compile>
-    <Compile Include="estado.cs">
+    <Compile Include="App_Db_Model\estado.cs">
       <DependentUpon>ModelImoestudante.tt</DependentUpon>
     </Compile>
-    <Compile Include="genero.cs">
+    <Compile Include="App_Db_Model\genero.cs">
       <DependentUpon>ModelImoestudante.tt</DependentUpon>
     </Compile>
-    <Compile Include="ImoEstudante.cs" />
-    <Compile Include="instituicaoEnsino.cs">
+    <Compile Include="App_Data\ImoEstudante.cs" />
+    <Compile Include="App_Db_Model\instituicaoEnsino.cs">
       <DependentUpon>ModelImoestudante.tt</DependentUpon>
     </Compile>
-    <Compile Include="ModelImoestudante.Context.cs">
+    <Compile Include="App_Db_Model\ModelImoestudante.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>ModelImoestudante.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="ModelImoestudante.cs">
+    <Compile Include="App_Db_Model\ModelImoestudante.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>ModelImoestudante.tt</DependentUpon>
     </Compile>
-    <Compile Include="ModelImoestudante.Designer.cs">
+    <Compile Include="App_Db_Model\ModelImoestudante.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>ModelImoestudante.edmx</DependentUpon>
     </Compile>
-    <Compile Include="morada.cs">
+    <Compile Include="App_Db_Model\morada.cs">
       <DependentUpon>ModelImoestudante.tt</DependentUpon>
     </Compile>
-    <Compile Include="pai.cs">
+    <Compile Include="App_Db_Model\pai.cs">
       <DependentUpon>ModelImoestudante.tt</DependentUpon>
     </Compile>
+    <Compile Include="App_Data\SecurityManager.cs" />
     <Compile Include="Service1.svc.cs">
       <DependentUpon>Service1.svc</DependentUpon>
     </Compile>
     <Compile Include="IService1.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="tipoAlojamento.cs">
+    <Compile Include="App_Db_Model\tipoAlojamento.cs">
       <DependentUpon>ModelImoestudante.tt</DependentUpon>
     </Compile>
-    <Compile Include="tipologia.cs">
+    <Compile Include="App_Db_Model\tipologia.cs">
       <DependentUpon>ModelImoestudante.tt</DependentUpon>
     </Compile>
-    <Compile Include="tipoUser.cs">
+    <Compile Include="App_Db_Model\tipoUser.cs">
       <DependentUpon>ModelImoestudante.tt</DependentUpon>
     </Compile>
-    <Compile Include="user.cs">
+    <Compile Include="App_Db_Model\user.cs">
       <DependentUpon>ModelImoestudante.tt</DependentUpon>
     </Compile>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="App_Data\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="packages.config" />
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <EntityDeploy Include="ModelImoestudante.edmx">
+    <EntityDeploy Include="App_Db_Model\ModelImoestudante.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>ModelImoestudante.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <Content Include="ModelImoestudante.edmx.diagram">
+    <Content Include="App_Db_Model\ModelImoestudante.edmx.diagram">
       <DependentUpon>ModelImoestudante.edmx</DependentUpon>
     </Content>
     <None Include="Web.Debug.config">

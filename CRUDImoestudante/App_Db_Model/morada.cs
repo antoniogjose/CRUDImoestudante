@@ -7,29 +7,33 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace CRUDImoestudante
+namespace CRUDImoestudante.App_Db_Model
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class curso
+    public partial class morada
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public curso()
+        public morada()
         {
-            this.areaCursoes = new HashSet<areaCurso>();
-            this.users = new HashSet<user>();
+            this.alojamentoes = new HashSet<alojamento>();
+            this.instituicaoEnsinoes = new HashSet<instituicaoEnsino>();
         }
     
-        public int idCurso { get; set; }
-        public int idInstituicao { get; set; }
-        public string nomeCurso { get; set; }
-        public int anoCurso { get; set; }
+        public int idMorada { get; set; }
+        public int idPais { get; set; }
+        public string cidade { get; set; }
+        public string rua { get; set; }
+        public int codigoPostal { get; set; }
+        public Nullable<int> numero { get; set; }
+        public Nullable<int> andar { get; set; }
+        public string descAndar { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<areaCurso> areaCursoes { get; set; }
+        public virtual ICollection<alojamento> alojamentoes { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<user> users { get; set; }
-        public virtual instituicaoEnsino instituicaoEnsino { get; set; }
+        public virtual ICollection<instituicaoEnsino> instituicaoEnsinoes { get; set; }
+        public virtual pai pai { get; set; }
     }
 }

@@ -7,14 +7,17 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace CRUDImoestudante
+namespace CRUDImoestudante.App_Db_Model
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class comodidadesAlojamento
+    public partial class areaCurso
     {
-        public int idComodidade { get; set; }
-        public int idAlojamento { get; set; }
+        public int idArea { get; set; }
+        public int idCurso { get; set; }
+        public string nomeArea { get; set; }
+    
+        public virtual curso curso { get; set; }
     }
 }

@@ -7,14 +7,19 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace CRUDImoestudante
+namespace CRUDImoestudante.App_Db_Model
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class tipoUser
+    public partial class contacto
     {
-        public int idTipo { get; set; }
-        public string nomeTipo { get; set; }
+        public int idContacto { get; set; }
+        public int idUser { get; set; }
+        public int nivel { get; set; }
+        public string tipo { get; set; }
+        public string valor { get; set; }
+    
+        public virtual user user { get; set; }
     }
 }

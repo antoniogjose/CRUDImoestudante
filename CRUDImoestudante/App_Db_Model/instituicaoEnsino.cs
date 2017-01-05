@@ -7,23 +7,25 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace CRUDImoestudante
+namespace CRUDImoestudante.App_Db_Model
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class estado
+    public partial class instituicaoEnsino
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public estado()
+        public instituicaoEnsino()
         {
-            this.alojamentoes = new HashSet<alojamento>();
+            this.cursoes = new HashSet<curso>();
         }
     
-        public int idEstado { get; set; }
-        public string nomeEstado { get; set; }
+        public int idInstituicao { get; set; }
+        public Nullable<int> idMorada { get; set; }
+        public string nomeInstituicao { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<alojamento> alojamentoes { get; set; }
+        public virtual ICollection<curso> cursoes { get; set; }
+        public virtual morada morada { get; set; }
     }
 }

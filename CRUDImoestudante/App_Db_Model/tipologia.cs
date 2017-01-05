@@ -7,27 +7,23 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace CRUDImoestudante
+namespace CRUDImoestudante.App_Db_Model
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class pai
+    public partial class tipologia
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public pai()
+        public tipologia()
         {
-            this.moradas = new HashSet<morada>();
-            this.users = new HashSet<user>();
+            this.alojamentoes = new HashSet<alojamento>();
         }
     
-        public int idPais { get; set; }
-        public string nomePais { get; set; }
-        public string code { get; set; }
+        public int idTopologia { get; set; }
+        public string nometipologia { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<morada> moradas { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<user> users { get; set; }
+        public virtual ICollection<alojamento> alojamentoes { get; set; }
     }
 }
